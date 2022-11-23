@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% for message in get_flashed_messages() %}
+    <br>
+    <br>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    
+{% endfor %}
+
+{% if username %}
+    <h1>Welcome To Blog Application {{username}}!!</h1>
+{% else %}
+    <h1> Register Form: </h1>
+    <br>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        {{ form.username.label(class="form-label") }}
+        {{ form.username(class="form-control") }}
+        <br>
+        {{form.email.label(class="form-label")}}
+        {{form.email(class="form-control")}}
+        <br>
+        {{form.password_hash.label(class="form-label")}}
+        {{form.password_hash(class="form-control")}}
+        <br>
+        {{form.password_hash1.label(class="form-label")}}
+        {{form.password_hash1(class="form-control")}}
+        <br>
+        {{form.submit(class="btn btn-primary")}}
+    </form>
+
+{% endif %}
+{% endblock %}
